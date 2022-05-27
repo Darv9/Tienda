@@ -1,0 +1,16 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 26 may. 2022, 21:29:19
+    Author     : danie
+*/
+
+.block{
+    background-color: purple;
+    width: 200px;
+    height: 200px;
+    padding: 50px;
+    border: 5px solid blue;
+}
