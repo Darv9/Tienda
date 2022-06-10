@@ -16,7 +16,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .container{
-    height:140vh;
+    height:150vh;
     width:100%;
     background-image: url(../images/background.png);
     background-size:cover;
