@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author danie
  */
 public class Userprincipal implements UserDetails{
+    
     private Persona persona;
     
     public Userprincipal(Persona persona){
@@ -34,7 +35,7 @@ public class Userprincipal implements UserDetails{
         });
         
         this.persona.getRoleList().forEach(r -> { 
-            GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_R" + r);
+            GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + r);
             authorities.add(authority);
         });
         return authorities;

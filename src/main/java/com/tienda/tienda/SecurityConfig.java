@@ -4,6 +4,7 @@
  */
 package com.tienda.tienda;
 
+
 import com.tienda.tienda.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,68 +15,65 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-
-/**
- *
- * @author danie
- */
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    
-    
     @Autowired
     private UserService userDetailsService;
-    
-    
-    //El @Bean es como el @Autowired que inyectaba dependencias, peeero inyectamos 
-    //dependencias pero de configuracion que debe hacer el programa cuando se esta ejecutando
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
     @Bean
-    public UserService getUserService(){
+    public UserService getUserService() {
         return new UserService();
     }
-    
     @Bean
-    DaoAuthenticationProvider authenticationProvider(){
+    DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         daoAuthenticationProvider.setUserDetailsService(getUserService());
         return daoAuthenticationProvider;
     }
-    
     @Bean
-    public AuthenticationSuccessHandler appAuthenticationSuccessHandler(){
+    public AuthenticationSuccessHandler appAuthenticationSuccessHandler() {
         return new AppAuthenticationSuccessHandler();
     }
-    
-    public SecurityConfig(UserService userPrincipalDetailsService){
+    public SecurityConfig(UserService userPrincipalDetailsService) {
         this.userDetailsService = userPrincipalDetailsService;
     }
-    
     @Override
-    protected void configure(AuthenticationManagerBuilder auth){
+    protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationProvider());
     }
-    
+    //El siguiente método funciona para hacer la autenticación del usuario
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/persona", "/login", "/personasN")
+        /* http.authorizeRequests()
+                .antMatchers("/persona","/login")
                 .hasRole("ADMIN")
-                .antMatchers("/persona", "/", "/login")
+                .antMatchers("/personasN", "/persona", "/","/login")
+                .hasAnyRole("USER", "VENDEDOR", "ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin();    
+        */
+        http.authorizeRequests()
+                .antMatchers("/persona","/login","/personasN", "/X")
+                .hasRole("ADMIN")
+                .antMatchers("/persona", "/","/login", "/X")
                 .hasAnyRole("USER", "VENDEDOR", "ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").permitAll().defaultSuccessUrl("/personaN", true);
+                .loginPage("/login").permitAll().defaultSuccessUrl("/persona",true);
     }
-    
-    
+    //El siguiente método funciona parsa realizar la autorización de accesos
+    //i18n
 }

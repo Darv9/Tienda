@@ -45,6 +45,15 @@ public class PersonaController {
         model.addAttribute("paises", listaPaises);
         return "crear";
     }
+    
+    @GetMapping("/X")
+    public String prueba(Model model) {
+        List<Persona> listaPersona = personaService.getAllPersona();
+        List<Pais> listaPaises = paisService.listCountry();
+        model.addAttribute("persona", new Persona());
+        model.addAttribute("paises", listaPaises);
+        return "crear";
+    }
 
     @PostMapping("/save")
     public String guardarPersona(@ModelAttribute Persona persona) {

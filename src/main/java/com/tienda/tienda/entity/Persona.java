@@ -129,7 +129,7 @@ public class Persona implements Serializable{
     public void setPermissions(String permissions) {
         this.permissions = permissions;
     }
-
+     
     public List<String> getRoleList(){
         if (this.roles.length() > 0) {
             return Arrays.asList(this.roles.split(","));
