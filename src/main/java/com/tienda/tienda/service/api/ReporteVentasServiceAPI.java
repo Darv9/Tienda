@@ -15,6 +15,5 @@ import net.sf.jasperreports.engine.JRException;
  * @author Daniel
  */
 public interface ReporteVentasServiceAPI {
-    
-    ReporteVentasDTO obtenerReporte(Map<String, Object> params)throws JRException, IOException, SQLException ;
+	ReporteVentasDTO obtenerReporteVentas(Map<String, Object> params) throws JRException, IOException, SQLException;
 }

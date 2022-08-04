@@ -25,27 +25,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReporteVentasServiceImpl implements ReporteVentasServiceAPI {
 
-    @Autowired
-    private JasperReportManager reportManager;
+	@Autowired
+	private JasperReportManager reportManager;
 
-    @Autowired
-    private DataSource dataSource;
+	@Autowired
+	private DataSource dataSource;
 
-    @Override
-    public ReporteVentasDTO obtenerReporte(Map<String, Object> params) throws JRException, IOException, SQLException {
-        String fileName = "reporte_clientes";
-        ReporteVentasDTO dto = new ReporteVentasDTO();
-        String extension = params.get("tipo").toString().equalsIgnoreCase(TipoReporteEnum.EXCEL.name()) ? ".xlsx" : ".pdf";
-        dto.setFileName(fileName + extension);
+	@Override
+	public ReporteVentasDTO obtenerReporteVentas(Map<String, Object> params)
+			throws JRException, IOException, SQLException {
+		String fileName = "reporte_clientes";
+		ReporteVentasDTO dto = new ReporteVentasDTO();
+		String extension = params.get("tipo").toString().equalsIgnoreCase(TipoReporteEnum.EXCEL.name()) ? ".xlsx"
+				: ".pdf";
+		dto.setFileName(fileName + extension);
+		ByteArrayOutputStream stream = reportManager.export(fileName, params.get("tipo").toString(), params,
+				dataSource.getConnection());
+		byte[] bs = stream.toByteArray();
+		dto.setStream(new ByteArrayInputStream(bs));
+		dto.setLength(bs.length);
 
-        ByteArrayOutputStream stream = reportManager.export(fileName, params.get("tipo").toString(), params,
-                dataSource.getConnection());
-
-        byte[] bs = stream.toByteArray();
-        dto.setStream(new ByteArrayInputStream(bs));
-        dto.setLength(bs.length);
-
-        return dto;
-    }
+		return dto;
+	}
 
 }

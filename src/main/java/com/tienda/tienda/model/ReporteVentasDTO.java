@@ -12,34 +12,33 @@ import java.io.ByteArrayInputStream;
  */
 
 public class ReporteVentasDTO {
-    
-    private String fileName;
-    private ByteArrayInputStream stream;
-    private int length;
 
-    public String getFileName() {
-        return fileName;
-    }
+	private String fileName;
+	private ByteArrayInputStream stream;
+	private int length;
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
+	public String getFileName() {
+		return fileName;
+	}
 
-    public ByteArrayInputStream getStream() {
-        return stream;
-    }
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
-    public void setStream(ByteArrayInputStream stream) {
-        this.stream = stream;
-    }
+	public ByteArrayInputStream getStream() {
+		return stream;
+	}
 
-    public int getLength() {
-        return length;
-    }
+	public void setStream(ByteArrayInputStream stream) {
+		this.stream = stream;
+	}
 
-    public void setLength(int length) {
-        this.length = length;
-    }
-    
-    
+	public int getLength() {
+		return length;
+	}
+
+	public void setLength(int length) {
+		this.length = length;
+	}
+
 }
