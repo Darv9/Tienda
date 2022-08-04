@@ -33,7 +33,7 @@ public class ReporteVentasController {
     @Autowired
     private ReporteVentasServiceAPI reporteVentasServiceAPI;
     
-    @GetMapping("/ventas/download")
+    @GetMapping("/reporteClientes/download")
     public ResponseEntity<Resource> download(@RequestParam Map<String, Object> params) throws JRException, IOException, SQLException {
 		ReporteVentasDTO dto = reporteVentasServiceAPI.obtenerReporte(params);
 		InputStreamResource streamResource = new InputStreamResource(dto.getStream());

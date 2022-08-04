@@ -33,7 +33,7 @@ public class ReporteVentasServiceImpl implements ReporteVentasServiceAPI {
 
     @Override
     public ReporteVentasDTO obtenerReporte(Map<String, Object> params) throws JRException, IOException, SQLException {
-        String fileName = "reporte_de_ventas";
+        String fileName = "reporte_clientes";
         ReporteVentasDTO dto = new ReporteVentasDTO();
         String extension = params.get("tipo").toString().equalsIgnoreCase(TipoReporteEnum.EXCEL.name()) ? ".xlsx" : ".pdf";
         dto.setFileName(fileName + extension);
