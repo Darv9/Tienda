@@ -4,7 +4,7 @@
  */
 package com.tienda.tienda.service.api;
 
-import com.tienda.tienda.model.ReporteVentasDTO;
+import com.tienda.tienda.model.ReportePersonassDTO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
@@ -14,6 +14,6 @@ import net.sf.jasperreports.engine.JRException;
  *
  * @author Daniel
  */
-public interface ReporteVentasServiceAPI {
-	ReporteVentasDTO obtenerReporteVentas(Map<String, Object> params) throws JRException, IOException, SQLException;
+public interface ReportePersonasServiceAPI {
+	ReportePersonassDTO obtenerReportePersonas(Map<String, Object> params) throws JRException, IOException, SQLException;
 }

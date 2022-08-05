@@ -5,8 +5,7 @@
 package com.tienda.tienda.controller;
 
 import com.tienda.tienda.enums.TipoReporteEnum;
-import com.tienda.tienda.model.ReporteVentasDTO;
-import com.tienda.tienda.service.api.ReporteVentasServiceAPI;
+import com.tienda.tienda.model.ReportePersonassDTO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.tienda.tienda.service.api.ReportePersonasServiceAPI;
 
 /**
  *
@@ -27,15 +27,15 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/report")
-public class ReporteVentasController {
+public class ReportePersonasController {
 
     @Autowired
-    private ReporteVentasServiceAPI reporteVentasServiceAPI;
+    private ReportePersonasServiceAPI reporteVentasServiceAPI;
 
-    @GetMapping(path = "/ventas/download")
+    @GetMapping(path = "/personas/download")
     public ResponseEntity<Resource> download(@RequestParam Map<String, Object> params)
             throws JRException, IOException, SQLException {
-        ReporteVentasDTO dto = reporteVentasServiceAPI.obtenerReporteVentas(params);
+        ReportePersonassDTO dto = reporteVentasServiceAPI.obtenerReportePersonas(params);
         InputStreamResource streamResource = new InputStreamResource(dto.getStream());
         MediaType mediaType = null;
         mediaType = MediaType.APPLICATION_PDF;

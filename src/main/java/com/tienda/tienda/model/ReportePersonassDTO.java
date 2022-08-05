@@ -11,7 +11,7 @@ import java.io.ByteArrayInputStream;
  * @author Daniel
  */
 
-public class ReporteVentasDTO {
+public class ReportePersonassDTO {
 
 	private String fileName;
 	private ByteArrayInputStream stream;

@@ -6,8 +6,7 @@ package com.tienda.tienda.service.impl;
 
 import com.tienda.tienda.commons.JasperReportManager;
 import com.tienda.tienda.enums.TipoReporteEnum;
-import com.tienda.tienda.model.ReporteVentasDTO;
-import com.tienda.tienda.service.api.ReporteVentasServiceAPI;
+import com.tienda.tienda.model.ReportePersonassDTO;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -17,13 +16,14 @@ import javax.sql.DataSource;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.tienda.tienda.service.api.ReportePersonasServiceAPI;
 
 /**
  *
  * @author Daniel
  */
 @Service
-public class ReporteVentasServiceImpl implements ReporteVentasServiceAPI {
+public class ReportePersonasServiceImpl implements ReportePersonasServiceAPI {
 
 	@Autowired
 	private JasperReportManager reportManager;
@@ -32,10 +32,10 @@ public class ReporteVentasServiceImpl implements ReporteVentasServiceAPI {
 	private DataSource dataSource;
 
 	@Override
-	public ReporteVentasDTO obtenerReporteVentas(Map<String, Object> params)
+	public ReportePersonassDTO obtenerReportePersonas(Map<String, Object> params)
 			throws JRException, IOException, SQLException {
 		String fileName = "reporte_clientes";
-		ReporteVentasDTO dto = new ReporteVentasDTO();
+		ReportePersonassDTO dto = new ReportePersonassDTO();
 		String extension = params.get("tipo").toString().equalsIgnoreCase(TipoReporteEnum.EXCEL.name()) ? ".xlsx"
 				: ".pdf";
 		dto.setFileName(fileName + extension);
